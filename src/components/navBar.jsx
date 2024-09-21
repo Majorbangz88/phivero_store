@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {assets} from "../assets/frontend_assets/assets.js";
 import {Link, NavLink} from "react-router-dom";
 
 function NavBar() {
+
+    const [visible, setVisible] = useState(false);
     return (
         <div className='flex items-center justify-between py-5 font-medium'>
             <img src={assets.logo} alt="Logo" className="w-36" />
