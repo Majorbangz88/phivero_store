@@ -3,6 +3,7 @@ import Hero from "../components/hero.jsx";
 import LatestCollection from "../components/latestCollection.jsx";
 import BestSeller from "../components/bestSeller.jsx";
 import OurPolicy from "../components/ourPolicy.jsx";
+import NewsLetterBox from "../components/newsLetterBox.jsx";
 
 function Home() {
     return (
@@ -11,6 +12,7 @@ function Home() {
             <LatestCollection />
             <BestSeller />
             <OurPolicy />
+            <NewsLetterBox />
         </div>
     );
 }
