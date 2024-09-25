@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {ShopContext} from "../context/shopContext.jsx";
 import {assets} from "../assets/frontend_assets/assets.js";
+import RelatedProducts from "../components/relatedProducts.jsx";
 
 function Product() {
 
@@ -21,8 +22,6 @@ function Product() {
             }
         })
     }
-
-    console.log(productData)
 
     useEffect(() => {
         fetchProductData();
@@ -96,6 +95,8 @@ function Product() {
                     </p>
                 </div>
             </div>
+
+            <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
         </div>
     ) : <div className="opacity-0"></div>;
 }
