@@ -4,6 +4,7 @@ import LatestCollection from "../components/latestCollection.jsx";
 import BestSeller from "../components/bestSeller.jsx";
 import OurPolicy from "../components/ourPolicy.jsx";
 import NewsLetterBox from "../components/newsLetterBox.jsx";
+import SearchBar from "../components/searchBar.jsx";
 
 function Home() {
     return (
