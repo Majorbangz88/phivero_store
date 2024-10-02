@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {ShopContext} from "../context/shopContext.jsx";
 import Title from "../components/title.jsx";
 import {assets} from "../assets/frontend_assets/assets.js";
+import CartTotal from "../components/cartTotal.jsx";
 
 function Cart(props) {
 
@@ -53,6 +54,12 @@ function Cart(props) {
                         )
                     })
                 }
+            </div>
+            
+            <div className="flex justify-end my-20">
+                <div className="w-full sm:w-[450px]">
+                    <CartTotal />
+                </div>
             </div>
 
         </div>
