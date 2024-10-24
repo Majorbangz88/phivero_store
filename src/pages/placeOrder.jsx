@@ -2,15 +2,15 @@ import React, {useContext, useState} from 'react';
 import Title from "../components/title.jsx";
 import CartTotal from "../components/cartTotal.jsx";
 import {assets} from "../assets/frontend_assets/assets.js";
-import {useNavigation} from "react-router-dom";
 import {ShopContext} from "../context/shopContext.jsx";
-import {data} from "autoprefixer";
+import axios from "axios";
+import {toast} from "react-toastify";
 
-function PlaceOrder(props) {
+function PlaceOrder() {
     const [paymentMethod, setPaymentMethod] = useState('cod');
     const {
         navigate, backendUrl, token, cartItems, setCartItems,
-        getCartAmount, delivery_fee, products
+        getCartAmount, deliveryFee, products
     } = useContext(ShopContext);
 
     const [formData, setFormData] = useState({
@@ -49,8 +49,29 @@ function PlaceOrder(props) {
                     }
                 }
             }
-        } catch (error) {
 
+            let orderData = {
+                address: formData,
+                items: orderItems,
+                amount: getCartAmount() + deliveryFee
+            }
+
+            switch (paymentMethod) {
+                case 'cod':
+                    const response = await axios.post(backendUrl + '/api/order/place', orderData, {headers:{token}});
+                    if (response.data.success) {
+                        setCartItems({});
+                        navigate('/orders')
+                    } else {
+                        toast.error(response.data.message)
+                    }
+                    break;
+
+            }
+
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
         }
 
     }
