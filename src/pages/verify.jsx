@@ -2,6 +2,7 @@ import React, {useCallback, useContext, useEffect} from 'react';
 import {ShopContext} from "../context/shopContext.jsx";
 import {useSearchParams} from "react-router-dom";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 function Verify() {
     const { navigate, token, setCartItems, backendUrl } = useContext(ShopContext);
@@ -12,14 +13,21 @@ function Verify() {
 
     const verifyPayment = async () => {
         try {
-            if (token) {
+            if (!token) {
                 return null;
             }
 
-            const response = await axios.post(backendUrl + '/api/order/verify', {})
+            const response = await axios.post(backendUrl + '/api/order/verifyStripe', {success, orderId}, {headers:{token}});
+            if (response.data.success) {
+                setCartItems({});
+                navigate('/orders')
+            } else {
+                navigate('/cart');
+            }
 
         } catch (error) {
             console.error(error);
+            toast.error(error.message);
         }
     }
 
