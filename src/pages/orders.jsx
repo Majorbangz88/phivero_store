@@ -40,7 +40,6 @@ function Orders() {
         loadOrderData();
     }, [token]);
 
-
     return (
         <div className="border-t pt-16">
             <div className="text-2xl">
